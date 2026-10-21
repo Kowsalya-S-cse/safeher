@@ -1,5 +1,7 @@
 # SafeHer 🛡️ - AI-Powered Smart Women Safety System
 
+> 📺 **[Watch Live Demo Video](https://drive.google.com/file/d/15LBFj9d9LqmQVHRrfts4xkvL0sBX-19P/view?usp=sharing)** — See SafeHer in action with real-time SOS, AI threat assessment, and GPS tracking.
+
 SafeHer is a real-time, proactive personal safety Android application built with Jetpack Compose, Kotlin Coroutines, Room Database, and Google Gemini AI. It provides automated threat assessment, discrete distress detection, emergency SOS alerts, and live GPS tracking to keep women safe anywhere.
 
 ---
