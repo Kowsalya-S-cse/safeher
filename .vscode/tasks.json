@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run SafeHer App",
+      "type": "shell",
+      "command": ".\\run.bat",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Launch Android Emulator (Pixel_9_2)",
+      "type": "shell",
+      "command": "& \"$env:LOCALAPPDATA\\Android\\Sdk\\emulator\\emulator.exe\" -avd Pixel_9_2",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "View Live App Logs (Logcat)",
+      "type": "shell",
+      "command": "adb logcat -s SafetyViewModel GeminiSafetyService EmergencyServiceApi",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    }
+  ]
+}
