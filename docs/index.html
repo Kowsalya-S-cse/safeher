@@ -2,31 +2,33 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SafeHer 🛡️ | Autonomous AI Personal Safety System</title>
-  <meta name="description" content="SafeHer is an autonomous personal safety Android application powered by Google Gemini 1.5 Flash, edge audio distress detection, and real-time emergency dispatch.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>SafeHer - Smart Women Safety</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-dark: #08060B;
-      --surface-dark: #120C18;
-      --card-bg: rgba(26, 17, 34, 0.7);
-      --crimson-primary: #E61C40;
-      --crimson-glow: rgba(230, 28, 64, 0.45);
-      --crimson-dark: #8C0D23;
-      --crimson-light: #FF5A78;
-      --amber-accent: #FFB300;
-      --emerald-safe: #10B981;
-      --blue-accent: #3B82F6;
-      --text-primary: #FFFFFF;
-      --text-secondary: #A098AA;
-      --text-muted: #6B6275;
-      --border-glass: rgba(255, 255, 255, 0.08);
-      --font-heading: 'Outfit', sans-serif;
-      --font-body: 'Inter', sans-serif;
-      --font-mono: 'JetBrains Mono', monospace;
+      --canvas: #FEF7FF;
+      --surface: #F3EDF7;
+      --surface-variant: #E7E0EC;
+      --card-bg: #FFFFFF;
+      --primary: #6750A4;
+      --primary-container: #E8DEF8;
+      --on-primary-container: #21005D;
+      --border-lavender: #EADDFF;
+      --border-default: #CAC4D0;
+      --text-primary: #1D1B20;
+      --text-secondary: #49454F;
+      --text-muted: #79747E;
+      --crimson-primary: #B3261E;
+      --crimson-container: #F9DEDC;
+      --crimson-light: #DC362D;
+      --crimson-dark: #8C1D18;
+      --safe-green: #16A34A;
+      --safe-green-container: #DCFCE7;
+      --safe-green-text: #15803D;
+      --font-main: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
     }
 
     * {
@@ -34,351 +36,54 @@
       margin: 0;
       padding: 0;
       -webkit-tap-highlight-color: transparent;
-    }
-
-    body {
-      background-color: var(--bg-dark);
-      background-image: 
-        radial-gradient(circle at 15% 20%, rgba(230, 28, 64, 0.12) 0%, transparent 45%),
-        radial-gradient(circle at 85% 80%, rgba(59, 130, 246, 0.08) 0%, transparent 40%),
-        radial-gradient(circle at 50% 50%, rgba(18, 12, 24, 0.95) 0%, #08060B 100%);
-      color: var(--text-primary);
-      font-family: var(--font-body);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      overflow-x: hidden;
-    }
-
-    /* Top Navigation Banner */
-    header.hero-header {
-      padding: 1.25rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid var(--border-glass);
-      backdrop-filter: blur(16px);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(8, 6, 11, 0.85);
-    }
-
-    .brand-container {
-      display: flex;
-      align-items: center;
-      gap: 0.85rem;
-    }
-
-    .brand-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, var(--crimson-primary), var(--crimson-dark));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 16px var(--crimson-glow);
-    }
-
-    .brand-title {
-      font-family: var(--font-heading);
-      font-weight: 800;
-      font-size: 1.45rem;
-      letter-spacing: -0.02em;
-    }
-
-    .brand-title span {
-      color: var(--crimson-primary);
-    }
-
-    .badge-pill {
-      font-size: 0.72rem;
-      font-weight: 700;
-      padding: 0.25rem 0.65rem;
-      border-radius: 999px;
-      background: rgba(230, 28, 64, 0.15);
-      color: var(--crimson-light);
-      border: 1px solid rgba(230, 28, 64, 0.3);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.65rem 1.25rem;
-      border-radius: 10px;
-      font-family: var(--font-heading);
-      font-weight: 600;
-      font-size: 0.9rem;
-      text-decoration: none;
-      transition: all 0.25s ease;
-      cursor: pointer;
-      border: none;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--crimson-primary), #B81432);
-      color: white;
-      box-shadow: 0 4px 18px var(--crimson-glow);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 24px rgba(230, 28, 64, 0.65);
-    }
-
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.06);
-      color: var(--text-primary);
-      border: 1px solid var(--border-glass);
-      backdrop-filter: blur(8px);
-    }
-
-    .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.12);
-      border-color: rgba(255, 255, 255, 0.2);
-      transform: translateY(-2px);
-    }
-
-    /* Main Showcase Layout */
-    main.showcase-wrapper {
-      max-width: 1380px;
-      margin: 0 auto;
-      padding: 2.5rem 2rem 4rem;
-      display: grid;
-      grid-template-columns: 1fr 440px;
-      gap: 3.5rem;
-      align-items: start;
-      flex: 1;
-    }
-
-    /* Left Narrative Column */
-    .narrative-col {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-    }
-
-    .hero-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-family: var(--font-mono);
-      font-size: 0.85rem;
-      color: var(--emerald-safe);
-      background: rgba(16, 185, 129, 0.1);
-      border: 1px solid rgba(16, 185, 129, 0.25);
-      padding: 0.35rem 0.85rem;
-      border-radius: 6px;
-      width: fit-content;
-    }
-
-    .live-dot {
-      width: 8px;
-      height: 8px;
-      background: var(--emerald-safe);
-      border-radius: 50%;
-      animation: pulse-dot 1.8s infinite;
-    }
-
-    @keyframes pulse-dot {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(1.3); }
-    }
-
-    h1.hero-title {
-      font-family: var(--font-heading);
-      font-size: 3.2rem;
-      font-weight: 800;
-      line-height: 1.15;
-      letter-spacing: -0.03em;
-    }
-
-    h1.hero-title span.gradient-text {
-      background: linear-gradient(135deg, #FFF 30%, var(--crimson-light) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    p.hero-lead {
-      font-size: 1.12rem;
-      line-height: 1.65;
-      color: var(--text-secondary);
-      max-width: 640px;
-    }
-
-    /* Trilogy Interview Highlight Card */
-    .interview-card {
-      background: linear-gradient(135deg, rgba(230, 28, 64, 0.08), rgba(26, 17, 34, 0.6));
-      border: 1px solid rgba(230, 28, 64, 0.25);
-      border-radius: 16px;
-      padding: 1.5rem;
-      backdrop-filter: blur(12px);
-    }
-
-    .interview-card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 0.75rem;
-    }
-
-    .interview-title {
-      font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: 1.1rem;
-      color: #FFF;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .metrics-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-      margin-top: 1.25rem;
-    }
-
-    .metric-item {
-      background: rgba(0, 0, 0, 0.35);
-      border: 1px solid var(--border-glass);
-      border-radius: 10px;
-      padding: 0.85rem;
-      text-align: center;
-    }
-
-    .metric-val {
-      font-family: var(--font-mono);
-      font-weight: 700;
-      font-size: 1.35rem;
-      color: var(--crimson-light);
-    }
-
-    .metric-lbl {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      margin-top: 0.25rem;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-
-    /* Architecture Features List */
-    .features-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .feature-item {
-      display: flex;
-      gap: 1rem;
-      background: var(--card-bg);
-      border: 1px solid var(--border-glass);
-      padding: 1.15rem;
-      border-radius: 12px;
-      transition: all 0.25s ease;
-    }
-
-    .feature-item:hover {
-      border-color: rgba(230, 28, 64, 0.35);
-      transform: translateX(4px);
-    }
-
-    .feature-icon-box {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      background: rgba(255, 255, 255, 0.05);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.25rem;
-      flex-shrink: 0;
-    }
-
-    .feature-body h3 {
-      font-family: var(--font-heading);
-      font-size: 1rem;
-      font-weight: 700;
-      margin-bottom: 0.25rem;
-    }
-
-    .feature-body p {
-      font-size: 0.875rem;
-      color: var(--text-secondary);
-      line-height: 1.45;
-    }
-
-    /* RIGHT COLUMN: Interactive Smartphone Simulator */
-    .simulator-col {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      position: sticky;
-      top: 90px;
-    }
-
-    .phone-mockup {
-      width: 380px;
-      height: 740px;
-      background: #0E0911;
-      border-radius: 46px;
-      border: 10px solid #28212F;
-      box-shadow: 
-        0 24px 60px rgba(0, 0, 0, 0.85),
-        0 0 35px var(--crimson-glow);
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
       user-select: none;
     }
 
-    /* Speaker cutout and status bar */
-    .phone-notch {
-      position: absolute;
-      top: 12px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 90px;
-      height: 20px;
-      background: #000;
-      border-radius: 12px;
-      z-index: 50;
+    body {
+      background-color: #121016;
+      color: var(--text-primary);
+      font-family: var(--font-main);
+      min-height: 100vh;
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
+      padding: 0;
     }
 
-    .phone-lens {
-      width: 9px;
-      height: 9px;
-      background: #111a2e;
-      border-radius: 50%;
-      margin-left: 20px;
-      border: 1px solid rgba(255,255,255,0.1);
+    /* Container: fullscreen on mobile, Pixel device frame on desktop */
+    .app-viewport {
+      width: 100%;
+      max-width: 420px;
+      height: 100vh;
+      max-height: 900px;
+      background: var(--canvas);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
     }
 
-    .phone-status-bar {
+    @media (min-width: 600px) {
+      .app-viewport {
+        border-radius: 36px;
+        border: 8px solid #282430;
+        height: 860px;
+      }
+    }
+
+    /* Android Status Bar */
+    .status-bar {
       height: 38px;
-      padding: 10px 22px 0;
+      padding: 10px 20px 0;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 0.72rem;
-      font-weight: 600;
-      color: #C0B8C8;
-      z-index: 40;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      background: var(--canvas);
+      z-index: 50;
     }
 
     .status-icons {
@@ -387,1299 +92,976 @@
       align-items: center;
     }
 
-    /* Phone Screen Canvas */
-    .phone-screen {
+    /* Main Scrollable Content Area */
+    .screen-content {
       flex: 1;
-      display: flex;
+      overflow-y: auto;
+      padding: 12px 16px 85px;
+      display: none;
       flex-direction: column;
-      position: relative;
-      background: #0E0911;
-      overflow: hidden;
     }
 
-    /* App Header */
-    .app-header {
-      padding: 0.75rem 1.25rem;
+    .screen-content.active {
+      display: flex;
+    }
+
+    /* HOME SCREEN UI (Matches Video & Screenshot) */
+    .header-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 6px 0 12px;
     }
 
-    .app-brand {
+    .header-title-box {
       display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-family: var(--font-heading);
-      font-weight: 800;
-      font-size: 1.1rem;
+      flex-direction: column;
     }
 
-    .app-brand span {
-      color: var(--crimson-primary);
+    .eyebrow-text {
+      font-size: 0.68rem;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      color: var(--primary);
+      text-transform: uppercase;
     }
 
-    .app-header-btn {
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid var(--border-glass);
-      color: #FFF;
+    .greeting-text {
+      font-size: 1.7rem;
+      font-weight: 900;
+      color: var(--text-primary);
+      margin-top: 2px;
+      letter-spacing: -0.5px;
+    }
+
+    .profile-pill {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--primary-container);
+      border: 1px solid var(--border-lavender);
       display: flex;
       align-items: center;
       justify-content: center;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--on-primary-container);
       cursor: pointer;
-      font-size: 0.9rem;
-      transition: all 0.2s;
     }
 
-    .app-header-btn:hover {
-      background: rgba(230, 28, 64, 0.2);
-      border-color: var(--crimson-primary);
+    /* AI Safety Monitor Badge */
+    .monitor-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-lavender);
+      border-radius: 20px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+      cursor: pointer;
+      margin-bottom: 20px;
     }
 
-    /* Screen Views */
-    .view-content {
-      flex: 1;
-      overflow-y: auto;
-      padding: 1rem 1.25rem 5rem;
-      display: none;
+    .monitor-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
 
-    .view-content.active {
-      display: block;
-      animation: fadeIn 0.25s ease;
+    .monitor-shield-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: var(--primary-container);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(6px); }
-      to { opacity: 1; transform: translateY(0); }
+    .monitor-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      text-transform: uppercase;
     }
 
-    /* VIEW 1: SOS HOME */
-    .sos-container {
+    .monitor-risk {
+      font-size: 0.95rem;
+      font-weight: 900;
+      color: var(--text-primary);
+      margin-top: 1px;
+    }
+
+    .monitor-risk span {
+      color: var(--safe-green-text);
+    }
+
+    .secure-pill {
+      background: var(--safe-green-container);
+      color: var(--safe-green-text);
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .secure-pill::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--safe-green-text);
+    }
+
+    /* Big Central SOS Button */
+    .sos-section {
       display: flex;
       flex-direction: column;
       align-items: center;
-      text-align: center;
-      padding-top: 1.5rem;
+      margin: 10px 0 20px;
     }
 
-    .system-status-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      background: rgba(16, 185, 129, 0.12);
-      border: 1px solid rgba(16, 185, 129, 0.3);
-      padding: 0.35rem 0.85rem;
-      border-radius: 999px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: var(--emerald-safe);
-      margin-bottom: 2rem;
-    }
-
-    /* Pulsing SOS Button */
-    .sos-btn-wrapper {
+    .sos-button-wrapper {
       position: relative;
-      width: 210px;
-      height: 210px;
+      width: 190px;
+      height: 190px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 2rem;
       cursor: pointer;
     }
 
-    .sos-ripple {
+    .sos-pulse-ring {
       position: absolute;
       border-radius: 50%;
       border: 2px solid var(--crimson-primary);
-      opacity: 0;
-      animation: ripple 2.8s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+      animation: sosPulse 2.8s cubic-bezier(0, 0.2, 0.8, 1) infinite;
     }
 
-    .sos-ripple:nth-child(1) { width: 100%; height: 100%; animation-delay: 0s; }
-    .sos-ripple:nth-child(2) { width: 100%; height: 100%; animation-delay: 0.9s; }
-    .sos-ripple:nth-child(3) { width: 100%; height: 100%; animation-delay: 1.8s; }
+    .sos-pulse-ring:nth-child(1) { width: 100%; height: 100%; animation-delay: 0s; }
+    .sos-pulse-ring:nth-child(2) { width: 100%; height: 100%; animation-delay: 0.9s; }
+    .sos-pulse-ring:nth-child(3) { width: 100%; height: 100%; animation-delay: 1.8s; }
 
-    @keyframes ripple {
-      0% { transform: scale(0.65); opacity: 0.85; }
-      100% { transform: scale(1.65); opacity: 0; }
+    @keyframes sosPulse {
+      0% { transform: scale(0.7); opacity: 0.8; }
+      100% { transform: scale(1.55); opacity: 0; }
     }
 
-    .sos-main-circle {
-      width: 175px;
-      height: 175px;
+    .sos-circle {
+      width: 165px;
+      height: 165px;
       border-radius: 50%;
-      background: radial-gradient(circle at 35% 30%, var(--crimson-light), var(--crimson-primary) 50%, var(--crimson-dark));
+      background: radial-gradient(circle at 35% 30%, var(--crimson-light), var(--crimson-primary) 55%, var(--crimson-dark));
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       box-shadow: 
-        0 14px 40px rgba(230, 28, 64, 0.7),
-        inset 0 -6px 12px rgba(0, 0, 0, 0.5),
-        inset 0 4px 10px rgba(255, 255, 255, 0.4);
-      border: 6px solid rgba(255, 255, 255, 0.2);
-      transition: transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        0 14px 35px rgba(179, 38, 30, 0.5),
+        inset 0 4px 8px rgba(255, 255, 255, 0.35),
+        inset 0 -5px 12px rgba(0, 0, 0, 0.4);
+      border: 6px solid rgba(255, 255, 255, 0.25);
+      transition: transform 0.15s;
       z-index: 10;
     }
 
-    .sos-btn-wrapper:active .sos-main-circle {
-      transform: scale(0.92);
+    .sos-button-wrapper:active .sos-circle {
+      transform: scale(0.93);
     }
 
-    .sos-text {
-      font-family: var(--font-heading);
-      font-size: 2.75rem;
+    .sos-main-text {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.8rem;
       font-weight: 900;
-      letter-spacing: 0.05em;
+      color: #FFFFFF;
+      letter-spacing: 1px;
       line-height: 1;
-      text-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
     }
 
-    .sos-subtext {
+    .sos-sub-text {
       font-size: 0.65rem;
       font-weight: 700;
-      letter-spacing: 0.12em;
+      color: rgba(255, 255, 255, 0.85);
+      letter-spacing: 1.2px;
       text-transform: uppercase;
-      opacity: 0.85;
       margin-top: 4px;
     }
 
-    .sos-instructions {
-      font-size: 0.8rem;
+    .sos-hint-text {
+      font-size: 0.72rem;
       color: var(--text-secondary);
-      line-height: 1.4;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--border-glass);
-      padding: 0.75rem 1rem;
-      border-radius: 12px;
-      max-width: 290px;
-    }
-
-    /* Active Countdown Overlay */
-    .countdown-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(10, 4, 12, 0.94);
-      backdrop-filter: blur(12px);
-      z-index: 80;
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
+      font-weight: 500;
+      margin-top: 12px;
       text-align: center;
     }
 
-    .countdown-circle-svg {
-      width: 140px;
-      height: 140px;
-      transform: rotate(-90deg);
-      margin-bottom: 1.5rem;
-    }
-
-    .countdown-bg {
-      fill: none;
-      stroke: rgba(255, 255, 255, 0.1);
-      stroke-width: 8;
-    }
-
-    .countdown-progress {
-      fill: none;
-      stroke: var(--crimson-primary);
-      stroke-width: 8;
-      stroke-linecap: round;
-      stroke-dasharray: 377;
-      stroke-dashoffset: 0;
-      transition: stroke-dashoffset 1s linear;
-    }
-
-    .countdown-num {
-      position: absolute;
-      font-family: var(--font-heading);
-      font-size: 3.5rem;
-      font-weight: 900;
-      color: #FFF;
-      top: 135px;
-    }
-
-    /* Emergency Alert State Modal */
-    .emergency-state-overlay {
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at center, rgba(140, 13, 35, 0.95), #2A040B 90%);
-      z-index: 90;
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-between;
-      padding: 2rem 1.5rem 1.5rem;
-      text-align: center;
-      animation: alertFlash 1s infinite alternate;
-    }
-
-    @keyframes alertFlash {
-      0% { box-shadow: inset 0 0 50px rgba(230, 28, 64, 0.8); }
-      100% { box-shadow: inset 0 0 100px rgba(255, 90, 120, 0.9); }
-    }
-
-    .emergency-badge {
-      background: #FFF;
-      color: var(--crimson-dark);
-      font-weight: 800;
-      font-size: 0.85rem;
-      padding: 0.35rem 1rem;
-      border-radius: 999px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    /* Keypad Modal for PIN Resolution */
-    .pin-modal {
-      position: absolute;
-      inset: 0;
-      background: rgba(8, 5, 11, 0.97);
-      backdrop-filter: blur(14px);
-      z-index: 95;
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 1.5rem;
-    }
-
-    .pin-dots {
-      display: flex;
+    /* 2x2 Metric & Quick Action Cards */
+    .grid-2x2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 12px;
-      margin: 1.5rem 0;
+      margin-bottom: 14px;
     }
 
-    .pin-dot {
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      border: 2px solid var(--crimson-primary);
-      background: transparent;
+    .action-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-lavender);
+      border-radius: 18px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.03);
       transition: all 0.2s;
     }
 
-    .pin-dot.filled {
-      background: var(--crimson-primary);
-      box-shadow: 0 0 10px var(--crimson-glow);
+    .action-card:hover {
+      border-color: var(--primary);
     }
 
-    .keypad-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      width: 220px;
+    .action-card-crimson {
+      background: var(--crimson-container);
+      border-color: rgba(179, 38, 30, 0.2);
     }
 
-    .key-btn {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid var(--border-glass);
-      color: #FFF;
-      font-family: var(--font-heading);
-      font-size: 1.35rem;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.15s;
-    }
-
-    .key-btn:active {
-      background: var(--crimson-primary);
-      transform: scale(0.92);
-    }
-
-    /* VIEW 2: AI THREAT RADAR */
-    .threat-card {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--border-glass);
-      border-radius: 14px;
-      padding: 1rem;
-      margin-bottom: 1rem;
-    }
-
-    .threat-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 0.5rem;
-    }
-
-    .threat-level-badge {
-      font-size: 0.7rem;
-      font-weight: 800;
-      padding: 0.2rem 0.5rem;
-      border-radius: 4px;
-      background: rgba(16, 185, 129, 0.2);
-      color: var(--emerald-safe);
-    }
-
-    .waveform-canvas {
-      width: 100%;
-      height: 60px;
-      background: rgba(0, 0, 0, 0.4);
-      border-radius: 8px;
-      margin: 0.75rem 0;
-    }
-
-    /* VIEW 3: LOCATION & SAFE ZONES */
-    .map-preview {
-      width: 100%;
-      height: 180px;
-      border-radius: 14px;
-      background: radial-gradient(circle at 40% 50%, #1c2738 0%, #0c121c 100%);
-      border: 1px solid var(--border-glass);
-      position: relative;
-      overflow: hidden;
-      margin-bottom: 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .radar-sweep {
-      position: absolute;
-      width: 250px;
-      height: 250px;
-      border-radius: 50%;
-      border: 1px dashed rgba(59, 130, 246, 0.3);
-      animation: rotateSweep 6s linear infinite;
-    }
-
-    @keyframes rotateSweep {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    .user-pin {
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background: var(--blue-accent);
-      box-shadow: 0 0 15px var(--blue-accent);
-      z-index: 5;
-    }
-
-    /* VIEW 4: CONTACTS */
-    .contact-card {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--border-glass);
-      padding: 0.75rem 1rem;
-      border-radius: 12px;
-      margin-bottom: 0.65rem;
-    }
-
-    .contact-avatar {
+    .card-icon-box {
       width: 36px;
       height: 36px;
       border-radius: 50%;
-      background: rgba(230, 28, 64, 0.2);
-      color: var(--crimson-light);
+      background: var(--primary-container);
       display: flex;
       align-items: center;
       justify-content: center;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .card-icon-box-crimson {
+      background: rgba(179, 38, 30, 0.2);
+      color: var(--crimson-primary);
+    }
+
+    .card-label {
+      font-size: 0.68rem;
       font-weight: 700;
-      font-size: 0.85rem;
+      letter-spacing: 0.8px;
+      color: var(--text-secondary);
+      text-transform: uppercase;
     }
 
-    /* FAKE CALL MODAL */
-    .fake-call-overlay {
-      position: absolute;
-      inset: 0;
-      background: #090B10;
-      z-index: 92;
-      display: none;
-      flex-direction: column;
+    .card-label-crimson {
+      color: var(--crimson-primary);
+    }
+
+    .card-value {
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-top: 2px;
+    }
+
+    .card-value-crimson {
+      color: var(--crimson-primary);
+    }
+
+    /* Live Location Bar */
+    .location-bar-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-lavender);
+      border-radius: 18px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
       justify-content: space-between;
-      padding: 4rem 1.5rem 3rem;
-      text-align: center;
-    }
-
-    .caller-avatar {
-      width: 90px;
-      height: 90px;
-      border-radius: 50%;
-      background: #252D3D;
-      margin: 0 auto 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.2rem;
-    }
-
-    .call-actions {
-      display: flex;
-      justify-content: space-around;
-      width: 100%;
-    }
-
-    .call-btn {
-      width: 65px;
-      height: 65px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 1.5rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.03);
       cursor: pointer;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+      margin-bottom: 14px;
     }
 
-    .call-btn-decline { background: var(--crimson-primary); }
-    .call-btn-accept { background: var(--emerald-safe); }
+    .location-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
 
-    /* Bottom Navigation Bar */
-    .phone-bottom-nav {
+    .location-icon-box {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: var(--surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+    }
+
+    /* TAB 2: AI RADAR SCREEN */
+    .radar-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-lavender);
+      border-radius: 20px;
+      padding: 16px;
+      margin-bottom: 14px;
+    }
+
+    /* TAB 3: CONTACTS SCREEN */
+    .contact-item {
+      background: var(--card-bg);
+      border: 1px solid var(--border-lavender);
+      border-radius: 16px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    /* Android Bottom Navigation Bar (6 Tabs matching Screenshot) */
+    .bottom-nav {
       position: absolute;
       bottom: 0;
       left: 0;
       right: 0;
-      height: 64px;
-      background: rgba(14, 9, 17, 0.95);
-      backdrop-filter: blur(12px);
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      height: 72px;
+      background: var(--surface);
+      border-top: 1px solid var(--border-lavender);
       display: flex;
       justify-content: space-around;
       align-items: center;
-      padding: 0 0.5rem;
+      padding: 0 4px 6px;
       z-index: 60;
     }
 
-    .nav-tab-btn {
+    .nav-item {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 3px;
-      background: none;
-      border: none;
-      color: var(--text-muted);
+      gap: 2px;
       cursor: pointer;
+      color: var(--text-secondary);
       font-size: 0.68rem;
       font-weight: 600;
       transition: all 0.2s;
-      padding: 6px 10px;
+      flex: 1;
     }
 
-    .nav-tab-btn svg {
-      width: 20px;
-      height: 20px;
-      fill: currentColor;
-    }
-
-    .nav-tab-btn.active {
-      color: var(--crimson-primary);
-    }
-
-    /* Simulator helper note */
-    .simulator-note {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      margin-top: 1rem;
-      text-align: center;
+    .nav-icon-pill {
+      width: 48px;
+      height: 28px;
+      border-radius: 16px;
       display: flex;
       align-items: center;
-      gap: 0.4rem;
-    }
-
-    /* Modal for Resume / Architecture */
-    .doc-modal {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.85);
-      backdrop-filter: blur(16px);
-      z-index: 200;
-      display: none;
-      align-items: center;
       justify-content: center;
-      padding: 2rem;
+      transition: all 0.2s;
     }
 
-    .doc-modal-content {
-      background: var(--surface-dark);
-      border: 1px solid var(--border-glass);
-      border-radius: 20px;
-      width: 100%;
-      max-width: 760px;
-      max-height: 85vh;
-      overflow-y: auto;
-      padding: 2.5rem;
-      position: relative;
+    .nav-item.active .nav-icon-pill {
+      background: var(--primary-container);
+      color: var(--on-primary-container);
     }
 
-    .doc-modal-close {
+    .nav-item.active {
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    /* Countdown & Emergency Overlays */
+    .countdown-overlay {
       position: absolute;
-      top: 1.5rem;
-      right: 1.5rem;
-      background: rgba(255, 255, 255, 0.08);
-      border: none;
-      color: #FFF;
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      cursor: pointer;
-      font-size: 1.2rem;
-      display: flex;
+      inset: 0;
+      background: rgba(18, 14, 22, 0.96);
+      z-index: 100;
+      display: none;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
+      color: white;
+      text-align: center;
+      padding: 24px;
     }
 
-    /* Responsive */
-    @media (max-width: 1024px) {
-      main.showcase-wrapper {
-        grid-template-columns: 1fr;
-        justify-items: center;
-      }
-      .narrative-col {
-        align-items: center;
-        text-align: center;
-      }
-      p.hero-lead {
-        margin: 0 auto;
-      }
-      .features-list {
-        width: 100%;
-      }
-      .simulator-col {
-        position: static;
-        margin-top: 2rem;
+    .emergency-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, #9C1B14, #480A06);
+      z-index: 110;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      color: white;
+      text-align: center;
+      padding: 40px 24px 30px;
+    }
+
+    /* PIN Modal */
+    .pin-modal {
+      position: absolute;
+      inset: 0;
+      background: #FFFFFF;
+      z-index: 120;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    /* Fake Call Screen */
+    .fake-call-screen {
+      position: absolute;
+      inset: 0;
+      background: #11141A;
+      z-index: 105;
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 60px 24px 40px;
+      color: white;
+      text-align: center;
+    }
+
+    /* Direct APK Banner on top right of browser */
+    .desktop-apk-badge {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      background: var(--primary);
+      color: white;
+      padding: 10px 18px;
+      border-radius: 12px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 4px 16px rgba(103, 80, 164, 0.4);
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    @media (max-width: 600px) {
+      .desktop-apk-badge {
+        display: none;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Top Navigation Header -->
-  <header class="hero-header">
-    <div class="brand-container">
-      <div class="brand-icon">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
-          <path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V13H5V6.3l7-2.6 7 2.6v6.7h-7z"/>
-        </svg>
+  <!-- Floating direct download button for recruiters viewing on desktop -->
+  <a href="https://github.com/Kowsalya-S-cse/safeher/releases" target="_blank" class="desktop-apk-badge">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    Download Android APK
+  </a>
+
+  <!-- The Android Phone Viewport -->
+  <div class="app-viewport">
+    
+    <!-- Android Top Status Bar -->
+    <div class="status-bar">
+      <span id="timeClock">2:22</span>
+      <div class="status-icons">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 18.25A10.93 10.93 0 011 12C1 5.92 5.92 1 12 1s11 4.92 11 11c0 2.33-.73 4.49-1.97 6.27l-.62-.62A9.95 9.95 0 0021 12c0-4.97-4.03-9-9-9z"/><circle cx="12" cy="12" r="3"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="7" width="18" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><line x1="22" y1="11" x2="22" y2="13" stroke="currentColor" stroke-width="2"/><rect x="4" y="9" width="12" height="6" fill="currentColor"/></svg>
+      </div>
+    </div>
+
+    <!-- TAB 1: SOS HOME (EXACT MATCH TO DEMO VIDEO & SCREENSHOT) -->
+    <div class="screen-content active" id="tab-sos">
+      
+      <!-- Guardian AI Header -->
+      <div class="header-row">
+        <div class="header-title-box">
+          <span class="eyebrow-text">GUARDIAN AI</span>
+          <span class="greeting-text">Hello, Elena</span>
+        </div>
+        <div class="profile-pill" onclick="switchTab('settings')">
+          ER
+        </div>
+      </div>
+
+      <!-- AI Safety Monitor Status Strip -->
+      <div class="monitor-card" onclick="switchTab('radar')">
+        <div class="monitor-left">
+          <div class="monitor-shield-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3z"/></svg>
+          </div>
+          <div>
+            <div class="monitor-label">AI SAFETY MONITOR</div>
+            <div class="monitor-risk">RISK LEVEL: <span>LOW RISK</span></div>
+          </div>
+        </div>
+        <div class="secure-pill">SECURE</div>
+      </div>
+
+      <!-- Big Central SOS Button -->
+      <div class="sos-section">
+        <div class="sos-button-wrapper" id="mainSosBtn">
+          <div class="sos-pulse-ring"></div>
+          <div class="sos-pulse-ring"></div>
+          <div class="sos-pulse-ring"></div>
+          <div class="sos-circle">
+            <span class="sos-main-text">SOS</span>
+            <span class="sos-sub-text">TAP OR HOLD</span>
+          </div>
+        </div>
+        <div class="sos-hint-text">
+          Press & hold for 5s countdown • Instant dispatch ready
+        </div>
+      </div>
+
+      <!-- 2x2 Metric & Quick Action Grid (From Screenshot & HomeScreen.kt) -->
+      <div class="grid-2x2">
+        <!-- Card 1: Contacts -->
+        <div class="action-card" onclick="switchTab('contacts')">
+          <div class="card-icon-box">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3z"/></svg>
+          </div>
+          <span class="card-label">CONTACTS</span>
+          <span class="card-value">3 Protected</span>
+        </div>
+
+        <!-- Card 2: AI Radar -->
+        <div class="action-card" onclick="switchTab('radar')">
+          <div class="card-icon-box">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="3"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+          </div>
+          <span class="card-label">AI RADAR</span>
+          <span class="card-value" style="color: var(--safe-green-text);">Shield Active</span>
+        </div>
+
+        <!-- Card 3: Discreet Exit (Fake Call) -->
+        <div class="action-card" onclick="startFakeCallTimer()">
+          <div class="card-icon-box">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg>
+          </div>
+          <span class="card-label">DISCREET EXIT</span>
+          <span class="card-value">Fake Call in 3s</span>
+        </div>
+
+        <!-- Card 4: Helpline 112 -->
+        <div class="action-card action-card-crimson" onclick="alert('Triggering Emergency Helpline Call to 112 / 1091')">
+          <div class="card-icon-box card-icon-box-crimson">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg>
+          </div>
+          <span class="card-label card-label-crimson">HELPLINE</span>
+          <span class="card-value card-value-crimson">Dial 112 / 1091</span>
+        </div>
+      </div>
+
+      <!-- Live Location Bar -->
+      <div class="location-bar-card" onclick="switchTab('location')">
+        <div class="location-left">
+          <div class="location-icon-box">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          </div>
+          <div>
+            <div class="eyebrow-text">LIVE LOCATION</div>
+            <div style="font-size: 0.85rem; font-weight: 700; color: var(--text-primary); margin-top: 1px;">
+              Bangalore Urban, Karnataka
+            </div>
+          </div>
+        </div>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+
+    </div>
+
+    <!-- TAB 2: AI THREAT RADAR -->
+    <div class="screen-content" id="tab-radar">
+      <div class="header-row">
+        <div>
+          <span class="eyebrow-text">GEMINI 1.5 FLASH ENGINE</span>
+          <div class="greeting-text">Threat Radar</div>
+        </div>
+      </div>
+
+      <div class="radar-card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <span style="font-weight: 700; font-size: 0.9rem;">Multi-Modal Risk Status</span>
+          <span class="secure-pill">SECURE (12%)</span>
+        </div>
+        <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.4;">
+          Zero threat anomalies detected. Ambient noise 38 dB, motion variance steady.
+        </p>
+      </div>
+
+      <div class="radar-card">
+        <span style="font-weight: 700; font-size: 0.85rem;">Edge Audio Waveform</span>
+        <div style="height: 60px; background: #FAF5FF; border-radius: 12px; margin-top: 8px; display: flex; align-items: center; justify-content: center;">
+          <span style="font-size: 0.8rem; color: var(--primary); font-weight: 600;">Continuous Listening Active</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3: LOCATION -->
+    <div class="screen-content" id="tab-location">
+      <div class="header-row">
+        <div>
+          <span class="eyebrow-text">GPS SATELLITE LOCK</span>
+          <div class="greeting-text">Live Location</div>
+        </div>
+      </div>
+      <div class="radar-card" style="height: 240px; background: #E0F2FE; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="var(--primary)"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        <div style="font-size: 0.85rem; font-weight: 800; margin-top: 8px;">12.9716° N, 77.5946° E</div>
+        <div style="font-size: 0.75rem; color: var(--text-secondary);">Safe Zone Geofence: Campus Corridor</div>
+      </div>
+    </div>
+
+    <!-- TAB 4: CONTACTS -->
+    <div class="screen-content" id="tab-contacts">
+      <div class="header-row">
+        <div>
+          <span class="eyebrow-text">ROOM SQLITE DB</span>
+          <div class="greeting-text">Contacts (3)</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div>
+          <div style="font-weight: 800; font-size: 0.95rem;">Mom (Primary)</div>
+          <div style="font-size: 0.78rem; color: var(--text-muted);">+91 98765 43210</div>
+        </div>
+        <span class="secure-pill">PRIORITY 1</span>
+      </div>
+      <div class="contact-item">
+        <div>
+          <div style="font-weight: 800; font-size: 0.95rem;">Sister</div>
+          <div style="font-size: 0.78rem; color: var(--text-muted);">+91 91234 56789</div>
+        </div>
+        <span class="secure-pill" style="background: var(--primary-container); color: var(--primary);">PRIORITY 2</span>
+      </div>
+      <div class="contact-item">
+        <div>
+          <div style="font-weight: 800; font-size: 0.95rem;">Women Helpline</div>
+          <div style="font-size: 0.78rem; color: var(--text-muted);">1091 (Toll Free)</div>
+        </div>
+        <span class="secure-pill" style="background: var(--crimson-container); color: var(--crimson-primary);">POLICE</span>
+      </div>
+    </div>
+
+    <!-- TAB 5: HISTORY -->
+    <div class="screen-content" id="tab-history">
+      <div class="header-row">
+        <div>
+          <span class="eyebrow-text">EVENT LOGS</span>
+          <div class="greeting-text">History</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div>
+          <div style="font-weight: 800; font-size: 0.9rem;">System Armed</div>
+          <div style="font-size: 0.75rem; color: var(--text-muted);">Today, 2:20 PM • Baseline Secure</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 6: SETTINGS -->
+    <div class="screen-content" id="tab-settings">
+      <div class="header-row">
+        <div>
+          <span class="eyebrow-text">SAFETY PROFILE</span>
+          <div class="greeting-text">Settings</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div>
+          <div style="font-weight: 800; font-size: 0.9rem;">Emergency PIN</div>
+          <div style="font-size: 0.75rem; color: var(--text-muted);">Configured: **** (Default 2580)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5-Second Buffer Countdown Overlay -->
+    <div class="countdown-overlay" id="countdownScreen">
+      <div style="font-size: 1.1rem; font-weight: 700; color: #DC2626;">DISPATCH BUFFER</div>
+      <div style="font-size: 5rem; font-weight: 900; margin: 15px 0;" id="countdownValue">5</div>
+      <p style="font-size: 0.85rem; color: #CBD5E1; max-width: 260px; margin-bottom: 25px;">
+        Sounding acoustic siren and broadcasting GPS coordinates via SMS.
+      </p>
+      <button style="background: #334155; color: white; border: none; padding: 12px 28px; border-radius: 999px; font-weight: 700; cursor: pointer;" onclick="cancelSosCountdown()">
+        Cancel SOS
+      </button>
+    </div>
+
+    <!-- Emergency Active State Screen -->
+    <div class="emergency-overlay" id="emergencyScreen">
+      <div style="background: white; color: var(--crimson-primary); font-weight: 900; font-size: 0.75rem; padding: 4px 14px; border-radius: 999px;">
+        EMERGENCY ACTIVE
       </div>
       <div>
-        <div class="brand-title">Safe<span>Her</span></div>
+        <div style="font-size: 3rem; margin-bottom: 10px;">🚨</div>
+        <div style="font-size: 1.8rem; font-weight: 900;">SIREN ACTIVE</div>
+        <div style="font-size: 0.85rem; opacity: 0.9; margin-top: 6px;">Live GPS Dispatched to 3 Contacts</div>
       </div>
-      <div class="badge-pill">Trilogy Innovations Ready</div>
-    </div>
-
-    <div class="header-actions">
-      <button class="btn btn-secondary" onclick="openDocModal('arch')">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h7"/></svg>
-        Architecture
+      <button style="background: white; color: var(--crimson-primary); border: none; padding: 14px; border-radius: 14px; font-weight: 900; width: 100%; cursor: pointer;" onclick="openPinKeypad()">
+        DISARM EMERGENCY (ENTER PIN)
       </button>
-      <a href="https://github.com/Kowsalya-S-cse/safeher" target="_blank" class="btn btn-secondary">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-        GitHub Code
-      </a>
-      <a href="https://github.com/Kowsalya-S-cse/safeher/releases" target="_blank" class="btn btn-primary" id="downloadApkBtn">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Download APK (v1.0)
-      </a>
     </div>
-  </header>
 
-  <!-- Main Showcase Content -->
-  <main class="showcase-wrapper">
-    
-    <!-- Left Narrative Column -->
-    <div class="narrative-col">
-      <div class="hero-eyebrow">
-        <div class="live-dot"></div>
-        ACTIVE ANDROID SYSTEM • JETPACK COMPOSE & GEMINI AI
+    <!-- PIN Resolution Keypad -->
+    <div class="pin-modal" id="pinKeypad">
+      <div style="font-size: 1.2rem; font-weight: 900; color: var(--text-primary);">Enter Safety PIN</div>
+      <div style="font-size: 0.8rem; color: var(--text-muted); margin: 4px 0 20px;">Enter '2580' to disarm</div>
+      <div style="display: flex; gap: 12px; margin-bottom: 25px;" id="pinDots">
+        <div style="width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--primary);" id="p1"></div>
+        <div style="width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--primary);" id="p2"></div>
+        <div style="width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--primary);" id="p3"></div>
+        <div style="width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--primary);" id="p4"></div>
       </div>
-
-      <h1 class="hero-title">
-        Autonomous Safety & <br>
-        <span class="gradient-text">Zero-Latency Emergency Dispatch</span>
-      </h1>
-
-      <p class="hero-lead">
-        SafeHer is an engineering-first personal protection platform built in Kotlin with Clean Architecture. Designed to eliminate the single point of failure in traditional manual SOS buttons through <strong>Multi-Modal AI Threat Fusion</strong>, <strong>continuous on-device voice distress detection</strong>, and <strong>zero-asset acoustic sirens</strong>.
-      </p>
-
-      <!-- Trilogy Innovations Technical Highlight -->
-      <div class="interview-card">
-        <div class="interview-card-header">
-          <div class="interview-title">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="var(--crimson-primary)"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-            Engineered for Trilogy Innovations Interview
-          </div>
-          <button class="btn btn-secondary" style="padding: 0.35rem 0.75rem; font-size: 0.75rem;" onclick="openDocModal('qa')">
-            View 20 Interview Q&A
-          </button>
-        </div>
-        <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5;">
-          Demonstrating high-concurrency background services, fault-tolerant network fallbacks (Cloud LLM to on-device Bayesian rules), in-memory audio byte streaming, and unidirectional data flow via Kotlin StateFlow.
-        </p>
-
-        <div class="metrics-grid">
-          <div class="metric-item">
-            <div class="metric-val">&lt;150ms</div>
-            <div class="metric-lbl">SOS Latency</div>
-          </div>
-          <div class="metric-item">
-            <div class="metric-val">100%</div>
-            <div class="metric-lbl">Offline Fallback</div>
-          </div>
-          <div class="metric-item">
-            <div class="metric-val">2580</div>
-            <div class="metric-lbl">Safety PIN</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Key Engineering Highlights -->
-      <div class="features-list">
-        <div class="feature-item">
-          <div class="feature-icon-box" style="color: var(--crimson-light);">🚨</div>
-          <div class="feature-body">
-            <h3>Dual-Trigger SOS Ergonomics</h3>
-            <p>Single tap starts a 5-second cancellable buffer to avoid false alarms. Long-press executes an immediate emergency bypass with direct SMS, loud acoustic siren, and flashlight strobe.</p>
-          </div>
-        </div>
-
-        <div class="feature-item">
-          <div class="feature-icon-box" style="color: var(--amber-accent);">🧠</div>
-          <div class="feature-body">
-            <h3>Gemini 1.5 Flash Threat Fusion Engine</h3>
-            <p>Fuses live decibel meter amplitude, accelerometer motion variance, and distress phrases. Automatically falls back to on-device Bayesian heuristics if connectivity drops.</p>
-          </div>
-        </div>
-
-        <div class="feature-item">
-          <div class="feature-icon-box" style="color: var(--blue-accent);">🔊</div>
-          <div class="feature-body">
-            <h3>Zero-Asset Edge Siren Synthesizer</h3>
-            <p>Direct mathematical PCM sine-wave modulation (700Hz–1400Hz) rendered via AudioTrack without external .mp3 files or disk I/O, guaranteeing instant deterrence anywhere.</p>
-          </div>
-        </div>
-
-        <div class="feature-item">
-          <div class="feature-icon-box" style="color: var(--emerald-safe);">📞</div>
-          <div class="feature-body">
-            <h3>Discreet Fake Call Simulator</h3>
-            <p>Built-in incoming call trigger gives the user a dignified, safe pretext to gracefully exit uncomfortable or suspicious situations before threats escalate.</p>
-          </div>
-        </div>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; width: 220px;">
+        <button style="width:60px; height:60px; border-radius:50%; border:1px solid #E2E8F0; font-size:1.3rem; font-weight:700; background:#F8FAFC;" onclick="typePin('1')">1</button>
+        <button style="width:60px; height:60px; border-radius:50%; border:1px solid #E2E8F0; font-size:1.3rem; font-weight:700; background:#F8FAFC;" onclick="typePin('2')">2</button>
+        <button style="width:60px; height:60px; border-radius:50%; border:1px solid #E2E8F0; font-size:1.3rem; font-weight:700; background:#F8FAFC;" onclick="typePin('3')">3</button>
+        <button style="width:60px; height:60px; border-radius:50%; border:1px solid #E2E8F0; font-size:1.3rem; font-weight:700; background:#F8FAFC;" onclick="typePin('4')">4</button>
+        <button style="width:60px; height:60px; border-radius:50%; border:1px solid #E2E8F0; font-size:1.3rem; font-weight:700; background:#F8FAFC;" onclick="typePin('5')">5</button>
+        <button style="width:60px; height:60px; border-radius:50%; border:1px solid #E2E8F0; font-size:1.3rem; font-weight:700; background:#F8FAFC;" onclick="typePin('6')">6</button>
+        <button style="width:60px; height:60px; border-radius:50%; border:1px solid #E2E8F0; font-size:1.3rem; font-weight:700; background:#F8FAFC;" onclick="typePin('7')">7</button>
+        <button style="width:60px; height:60px; border-radius:50%; border:1px solid #E2E8F0; font-size:1.3rem; font-weight:700; background:#F8FAFC;" onclick="typePin('8')">8</button>
+        <button style="width:60px; height:60px; border-radius:50%; border:1px solid #E2E8F0; font-size:1.3rem; font-weight:700; background:#F8FAFC;" onclick="typePin('9')">9</button>
+        <button style="width:60px; height:60px; border-radius:50%; border:1px solid #E2E8F0; font-size:0.9rem; font-weight:700; background:#F8FAFC;" onclick="resetPinInput()">C</button>
+        <button style="width:60px; height:60px; border-radius:50%; border:1px solid #E2E8F0; font-size:1.3rem; font-weight:700; background:#F8FAFC;" onclick="typePin('0')">0</button>
+        <button style="width:60px; height:60px; border-radius:50%; border:none; font-size:0.9rem; font-weight:700; background:var(--primary); color:white;" onclick="autoResolvePin()">✓</button>
       </div>
     </div>
 
-    <!-- Right Column: Interactive Smartphone Simulator -->
-    <div class="simulator-col">
-      <div class="phone-mockup">
-        <!-- Hardware camera cutout & Speaker -->
-        <div class="phone-notch">
-          <div class="phone-lens"></div>
-        </div>
-
-        <!-- Phone Status Bar -->
-        <div class="phone-status-bar">
-          <span id="phoneClock">12:30</span>
-          <div class="status-icons">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 18.25A10.93 10.93 0 011 12C1 5.92 5.92 1 12 1s11 4.92 11 11c0 2.33-.73 4.49-1.97 6.27l-.62-.62A9.95 9.95 0 0021 12c0-4.97-4.03-9-9-9z"/><circle cx="12" cy="12" r="3"/></svg>
-            <span style="font-size: 0.65rem;">5G</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="7" width="18" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><line x1="22" y1="11" x2="22" y2="13" stroke="currentColor" stroke-width="2"/><rect x="4" y="9" width="12" height="6" fill="currentColor"/></svg>
-          </div>
-        </div>
-
-        <!-- Phone Screen Content -->
-        <div class="phone-screen">
-          <!-- App Header -->
-          <div class="app-header">
-            <div class="app-brand">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="var(--crimson-primary)"><path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3z"/></svg>
-              Safe<span>Her</span>
-            </div>
-            <div style="display: flex; gap: 6px;">
-              <button class="app-header-btn" title="Simulate Fake Call" onclick="triggerFakeCall()">
-                📞
-              </button>
-              <button class="app-header-btn" title="Sound Siren Directly" onclick="toggleSimSiren()">
-                🔊
-              </button>
-            </div>
-          </div>
-
-          <!-- TAB 1: SOS HOME (Default) -->
-          <div class="view-content active" id="view-sos">
-            <div class="sos-container">
-              <div class="system-status-chip">
-                <span class="live-dot" style="width: 6px; height: 6px;"></span>
-                SYSTEM ARMED & MONITORING
-              </div>
-
-              <!-- Main Interactive SOS Button -->
-              <div class="sos-btn-wrapper" id="sosBtn">
-                <div class="sos-ripple"></div>
-                <div class="sos-ripple"></div>
-                <div class="sos-ripple"></div>
-                <div class="sos-main-circle">
-                  <div class="sos-text">SOS</div>
-                  <div class="sos-subtext">TAP OR HOLD</div>
-                </div>
-              </div>
-
-              <div class="sos-instructions">
-                💡 <strong>Single Tap</strong>: 5s buffer countdown.<br>
-                🔥 <strong>Long Press</strong>: Instant Emergency dispatch.
-              </div>
-            </div>
-          </div>
-
-          <!-- TAB 2: AI THREAT RADAR -->
-          <div class="view-content" id="view-threat">
-            <div style="font-family: var(--font-heading); font-size: 1.1rem; font-weight: 700; margin-bottom: 0.85rem; display: flex; justify-content: space-between; align-items: center;">
-              <span>AI Threat Radar</span>
-              <span class="badge-pill" style="font-size: 0.65rem;">Gemini 1.5 Flash</span>
-            </div>
-
-            <div class="threat-card">
-              <div class="threat-header">
-                <span style="font-size: 0.8rem; font-weight: 600;">Current Risk Assessment</span>
-                <span class="threat-level-badge" id="riskBadge">LOW RISK (12%)</span>
-              </div>
-              <p style="font-size: 0.75rem; color: var(--text-secondary);" id="riskSummary">
-                Environment normal. Motion patterns steady, no vocal distress indicators.
-              </p>
-            </div>
-
-            <div class="threat-card">
-              <div class="threat-header">
-                <span style="font-size: 0.8rem; font-weight: 600;">Microphone Waveform</span>
-                <span style="font-size: 0.7rem; color: var(--text-muted);" id="dbLabel">38 dB (Normal)</span>
-              </div>
-              <canvas class="waveform-canvas" id="waveformCanvas"></canvas>
-            </div>
-
-            <button class="btn btn-primary" style="width: 100%; justify-content: center; padding: 0.65rem;" onclick="runSimulatedThreatScan()">
-              ⚡ Run Multi-Modal AI Scan
-            </button>
-          </div>
-
-          <!-- TAB 3: LOCATION & SAFE ZONES -->
-          <div class="view-content" id="view-location">
-            <div style="font-family: var(--font-heading); font-size: 1.1rem; font-weight: 700; margin-bottom: 0.85rem;">
-              Live GPS & Safe Radar
-            </div>
-
-            <div class="map-preview">
-              <div class="radar-sweep"></div>
-              <div class="user-pin"></div>
-              <div style="position: absolute; bottom: 8px; left: 10px; font-size: 0.65rem; color: #FFF; background: rgba(0,0,0,0.6); padding: 2px 6px; border-radius: 4px;">
-                📍 12.9716° N, 77.5946° E
-              </div>
-            </div>
-
-            <div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem;">
-              Nearby Verified Safe Zones
-            </div>
-
-            <div class="threat-card" style="margin-bottom: 0.5rem; padding: 0.65rem 0.85rem;">
-              <div style="display: flex; justify-content: space-between; font-size: 0.8rem; font-weight: 600;">
-                <span>Central Police Station</span>
-                <span style="color: var(--emerald-safe);">450 m</span>
-              </div>
-              <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 2px;">24/7 Active Police Patrol Post</div>
-            </div>
-
-            <div class="threat-card" style="margin-bottom: 0.5rem; padding: 0.65rem 0.85rem;">
-              <div style="display: flex; justify-content: space-between; font-size: 0.8rem; font-weight: 600;">
-                <span>City Metro Station</span>
-                <span style="color: var(--emerald-safe);">720 m</span>
-              </div>
-              <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 2px;">CCTV Monitored Transit Hub</div>
-            </div>
-          </div>
-
-          <!-- TAB 4: CONTACTS -->
-          <div class="view-content" id="view-contacts">
-            <div style="font-family: var(--font-heading); font-size: 1.1rem; font-weight: 700; margin-bottom: 0.85rem; display: flex; justify-content: space-between; align-items: center;">
-              <span>Emergency Network</span>
-              <span style="font-size: 0.7rem; color: var(--emerald-safe);">3 Configured</span>
-            </div>
-
-            <div class="contact-card">
-              <div style="display: flex; align-items: center; gap: 0.75rem;">
-                <div class="contact-avatar">M</div>
-                <div>
-                  <div style="font-size: 0.85rem; font-weight: 700;">Mom (Primary)</div>
-                  <div style="font-size: 0.7rem; color: var(--text-muted);">+91 98765 43210</div>
-                </div>
-              </div>
-              <span class="badge-pill" style="font-size: 0.6rem; padding: 2px 6px;">PRIORITY 1</span>
-            </div>
-
-            <div class="contact-card">
-              <div style="display: flex; align-items: center; gap: 0.75rem;">
-                <div class="contact-avatar" style="background: rgba(59, 130, 246, 0.2); color: var(--blue-accent);">S</div>
-                <div>
-                  <div style="font-size: 0.85rem; font-weight: 700;">Sister</div>
-                  <div style="font-size: 0.7rem; color: var(--text-muted);">+91 91234 56789</div>
-                </div>
-              </div>
-              <span class="badge-pill" style="font-size: 0.6rem; padding: 2px 6px; border-color: rgba(59, 130, 246, 0.4); color: var(--blue-accent); background: rgba(59, 130, 246, 0.1);">PRIORITY 2</span>
-            </div>
-
-            <div class="contact-card">
-              <div style="display: flex; align-items: center; gap: 0.75rem;">
-                <div class="contact-avatar" style="background: rgba(16, 185, 129, 0.2); color: var(--emerald-safe);">W</div>
-                <div>
-                  <div style="font-size: 0.85rem; font-weight: 700;">Women Helpline</div>
-                  <div style="font-size: 0.7rem; color: var(--text-muted);">1091 (Toll-Free)</div>
-                </div>
-              </div>
-              <span class="badge-pill" style="font-size: 0.6rem; padding: 2px 6px; border-color: rgba(16, 185, 129, 0.4); color: var(--emerald-safe); background: rgba(16, 185, 129, 0.1);">OFFICIAL</span>
-            </div>
-          </div>
-
-          <!-- COUNTDOWN OVERLAY -->
-          <div class="countdown-overlay" id="countdownOverlay">
-            <svg class="countdown-circle-svg" viewBox="0 0 140 140">
-              <circle class="countdown-bg" cx="70" cy="70" r="60"/>
-              <circle class="countdown-progress" id="countdownProgress" cx="70" cy="70" r="60"/>
-            </svg>
-            <div class="countdown-num" id="countdownNum">5</div>
-            <div style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 800; margin-bottom: 0.5rem;">
-              DISPATCHING IN
-            </div>
-            <p style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 1.5rem; max-width: 200px;">
-              Alerting contacts & sounding acoustic siren
-            </p>
-            <button class="btn btn-secondary" onclick="cancelCountdown()">
-              ✕ Cancel Alert
-            </button>
-          </div>
-
-          <!-- EMERGENCY ACTIVE STATE OVERLAY -->
-          <div class="emergency-state-overlay" id="emergencyOverlay">
-            <div class="emergency-badge">🚨 EMERGENCY BROADCAST ACTIVE</div>
-            <div style="margin: auto 0;">
-              <div style="font-size: 3.5rem; margin-bottom: 0.5rem; animation: pulse-dot 0.8s infinite;">🔊</div>
-              <h2 style="font-family: var(--font-heading); font-size: 1.6rem; font-weight: 800;">
-                SIREN ACTIVE & DISPATCHED
-              </h2>
-              <p style="font-size: 0.8rem; color: rgba(255,255,255,0.85); margin-top: 0.5rem; line-height: 1.4;">
-                Live GPS dispatched to emergency network.<br>
-                Acoustic deterrence playing at maximum volume.
-              </p>
-            </div>
-            <button class="btn btn-primary" style="width: 100%; justify-content: center; background: #FFF; color: var(--crimson-dark); font-weight: 800;" onclick="openPinModal()">
-              🛡️ RESOLVE EMERGENCY (ENTER PIN)
-            </button>
-          </div>
-
-          <!-- PIN RESOLUTION KEYPAD -->
-          <div class="pin-modal" id="pinModal">
-            <div style="font-family: var(--font-heading); font-size: 1.15rem; font-weight: 700;">Enter Safety PIN</div>
-            <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 2px;">Enter '2580' to disarm system</div>
-            
-            <div class="pin-dots">
-              <div class="pin-dot" id="dot1"></div>
-              <div class="pin-dot" id="dot2"></div>
-              <div class="pin-dot" id="dot3"></div>
-              <div class="pin-dot" id="dot4"></div>
-            </div>
-
-            <div class="keypad-grid">
-              <button class="key-btn" onclick="pressPin('1')">1</button>
-              <button class="key-btn" onclick="pressPin('2')">2</button>
-              <button class="key-btn" onclick="pressPin('3')">3</button>
-              <button class="key-btn" onclick="pressPin('4')">4</button>
-              <button class="key-btn" onclick="pressPin('5')">5</button>
-              <button class="key-btn" onclick="pressPin('6')">6</button>
-              <button class="key-btn" onclick="pressPin('7')">7</button>
-              <button class="key-btn" onclick="pressPin('8')">8</button>
-              <button class="key-btn" onclick="pressPin('9')">9</button>
-              <button class="key-btn" style="font-size: 0.9rem;" onclick="clearPin()">C</button>
-              <button class="key-btn" onclick="pressPin('0')">0</button>
-              <button class="key-btn" style="font-size: 0.8rem; color: var(--emerald-safe);" onclick="quickResolvePin()">✓</button>
-            </div>
-          </div>
-
-          <!-- FAKE CALL OVERLAY -->
-          <div class="fake-call-overlay" id="fakeCallOverlay">
-            <div>
-              <div class="caller-avatar">👤</div>
-              <h2 style="font-family: var(--font-heading); font-size: 1.8rem; font-weight: 700;">Dad</h2>
-              <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">Incoming Mobile Call...</p>
-            </div>
-            
-            <div class="call-actions">
-              <div class="call-btn call-btn-decline" onclick="dismissFakeCall()">✕</div>
-              <div class="call-btn call-btn-accept" onclick="acceptFakeCall()">📞</div>
-            </div>
-          </div>
-
-          <!-- Bottom Navigation Bar -->
-          <nav class="phone-bottom-nav">
-            <button class="nav-tab-btn active" onclick="switchTab('sos', this)">
-              <svg viewBox="0 0 24 24"><path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3z"/></svg>
-              <span>SOS</span>
-            </button>
-            <button class="nav-tab-btn" onclick="switchTab('threat', this)">
-              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
-              <span>AI Radar</span>
-            </button>
-            <button class="nav-tab-btn" onclick="switchTab('location', this)">
-              <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-              <span>Location</span>
-            </button>
-            <button class="nav-tab-btn" onclick="switchTab('contacts', this)">
-              <svg viewBox="0 0 24 24"><path d="M20 0H4v2h16V0zM4 24h16v-2H4v2zM20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-8 2.75c1.24 0 2.25 1.01 2.25 2.25s-1.01 2.25-2.25 2.25S9.75 10.24 9.75 9 10.76 6.75 12 6.75zM17 17H7v-1.5c0-1.67 3.33-2.5 5-2.5s5 .83 5 2.5V17z"/></svg>
-              <span>Contacts</span>
-            </button>
-          </nav>
-        </div>
+    <!-- Discreet Fake Call Simulator -->
+    <div class="fake-call-screen" id="fakeCallScreen">
+      <div>
+        <div style="width:85px; height:85px; border-radius:50%; background:#2A3240; margin: 0 auto 15px; display:flex; align-items:center; justify-content:center; font-size:2rem;">👤</div>
+        <div style="font-size: 1.8rem; font-weight:700;">Dad</div>
+        <div style="font-size: 0.85rem; color: #94A3B8; margin-top:4px;">Incoming Call...</div>
       </div>
-
-      <div class="simulator-note">
-        <span>📱 Interactive Pixel Simulator</span> • Click anywhere to test gestures & PIN
+      <div style="display:flex; justify-content:space-around; width:100%;">
+        <div style="width:64px; height:64px; border-radius:50%; background:var(--crimson-primary); display:flex; align-items:center; justify-content:center; font-size:1.4rem; cursor:pointer;" onclick="closeFakeCall()">✕</div>
+        <div style="width:64px; height:64px; border-radius:50%; background:var(--safe-green); display:flex; align-items:center; justify-content:center; font-size:1.4rem; cursor:pointer;" onclick="alert('Call connected! Discreet exit safe.'); closeFakeCall();">📞</div>
       </div>
     </div>
-  </main>
 
-  <!-- Modal for Architecture & Interview Reference -->
-  <div class="doc-modal" id="docModal">
-    <div class="doc-modal-content">
-      <button class="doc-modal-close" onclick="closeDocModal()">✕</button>
-      <div id="modalBody"></div>
-    </div>
+    <!-- Android Bottom Navigation Bar (6 Tabs: SOS, AI Radar, Location, Contacts, History, Settings) -->
+    <nav class="bottom-nav">
+      <!-- Tab 1: SOS -->
+      <div class="nav-item active" onclick="switchTab('sos', this)">
+        <div class="nav-icon-pill">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3z"/></svg>
+        </div>
+        <span>SOS</span>
+      </div>
+
+      <!-- Tab 2: AI Radar -->
+      <div class="nav-item" onclick="switchTab('radar', this)">
+        <div class="nav-icon-pill">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="3"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+        </div>
+        <span>AI Radar</span>
+      </div>
+
+      <!-- Tab 3: Location -->
+      <div class="nav-item" onclick="switchTab('location', this)">
+        <div class="nav-icon-pill">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        </div>
+        <span>Location</span>
+      </div>
+
+      <!-- Tab 4: Contacts -->
+      <div class="nav-item" onclick="switchTab('contacts', this)">
+        <div class="nav-icon-pill">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20 0H4v2h16V0zM4 24h16v-2H4v2zM20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-8 2.75c1.24 0 2.25 1.01 2.25 2.25s-1.01 2.25-2.25 2.25S9.75 10.24 9.75 9 10.76 6.75 12 6.75zM17 17H7v-1.5c0-1.67 3.33-2.5 5-2.5s5 .83 5 2.5V17z"/></svg>
+        </div>
+        <span>Contacts</span>
+      </div>
+
+      <!-- Tab 5: History -->
+      <div class="nav-item" onclick="switchTab('history', this)">
+        <div class="nav-icon-pill">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M13 3a9 9 0 0 0-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42A8.954 8.954 0 0 0 13 21a9 9 0 0 0 0-18zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg>
+        </div>
+        <span>History</span>
+      </div>
+
+      <!-- Tab 6: Settings -->
+      <div class="nav-item" onclick="switchTab('settings', this)">
+        <div class="nav-icon-pill">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+        </div>
+        <span>Settings</span>
+      </div>
+    </nav>
   </div>
 
   <script>
-    // Live Clock in status bar
-    function updateClock() {
-      const now = new Date();
-      let h = now.getHours();
-      let m = now.getMinutes();
-      m = m < 10 ? '0' + m : m;
-      document.getElementById('phoneClock').innerText = `${h}:${m}`;
-    }
-    setInterval(updateClock, 1000);
-    updateClock();
+    // Tab switching
+    function switchTab(tabId, navItem) {
+      document.querySelectorAll('.screen-content').forEach(s => s.classList.remove('active'));
+      const target = document.getElementById(`tab-${tabId}`);
+      if (target) target.classList.add('active');
 
-    // Tab Switching
-    function switchTab(tabId, btnElement) {
-      document.querySelectorAll('.view-content').forEach(view => view.classList.remove('active'));
-      document.querySelectorAll('.nav-tab-btn').forEach(btn => btn.classList.remove('active'));
-      
-      const targetView = document.getElementById(`view-${tabId}`);
-      if (targetView) targetView.classList.add('active');
-      if (btnElement) btnElement.classList.add('active');
-    }
-
-    // Audio Siren Synthesizer using Web Audio API (mimics EmergencyAudioSynthesizer.kt)
-    let audioCtx = null;
-    let sirenOsc = null;
-    let sirenGain = null;
-    let sirenInterval = null;
-    let isSirenPlaying = false;
-
-    function initAudio() {
-      if (!audioCtx) {
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      if (navItem) {
+        document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+        navItem.classList.add('active');
       }
     }
 
-    function startSirenSound() {
-      initAudio();
-      if (isSirenPlaying) return;
-      isSirenPlaying = true;
+    // Audio synthesizer for emergency siren
+    let audioCtx = null;
+    let osc = null;
+    let sirenInterval = null;
+    let isSirenOn = false;
 
-      sirenOsc = audioCtx.createOscillator();
-      sirenGain = audioCtx.createGain();
-
-      sirenOsc.type = 'sawtooth';
-      sirenOsc.frequency.setValueAtTime(700, audioCtx.currentTime);
-
-      sirenGain.gain.setValueAtTime(0.2, audioCtx.currentTime);
-      sirenOsc.connect(sirenGain);
-      sirenGain.connect(audioCtx.destination);
-
-      sirenOsc.start();
-
-      let high = false;
-      sirenInterval = setInterval(() => {
-        if (!isSirenPlaying) return;
-        const targetFreq = high ? 700 : 1400;
-        sirenOsc.frequency.exponentialRampToValueAtTime(targetFreq, audioCtx.currentTime + 0.35);
-        high = !high;
-      }, 400);
-    }
-
-    function stopSirenSound() {
-      if (!isSirenPlaying) return;
-      isSirenPlaying = false;
-      if (sirenInterval) clearInterval(sirenInterval);
+    function playSiren() {
+      if (isSirenOn) return;
+      isSirenOn = true;
       try {
-        if (sirenOsc) {
-          sirenOsc.stop();
-          sirenOsc.disconnect();
-        }
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(700, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+
+        let toggle = false;
+        sirenInterval = setInterval(() => {
+          if (!isSirenOn) return;
+          osc.frequency.exponentialRampToValueAtTime(toggle ? 700 : 1400, audioCtx.currentTime + 0.35);
+          toggle = !toggle;
+        }, 400);
       } catch (e) {}
     }
 
-    function toggleSimSiren() {
-      if (isSirenPlaying) {
-        stopSirenSound();
-      } else {
-        startSirenSound();
-      }
+    function stopSiren() {
+      isSirenOn = false;
+      if (sirenInterval) clearInterval(sirenInterval);
+      try {
+        if (osc) { osc.stop(); osc.disconnect(); }
+      } catch (e) {}
     }
 
-    // SOS Gesture Handling: Tap (5s countdown) vs Long-Press (instant)
-    const sosBtn = document.getElementById('sosBtn');
+    // SOS Gestures
+    const sosBtn = document.getElementById('mainSosBtn');
     let pressTimer = null;
-    let longPressed = false;
-    let countdownInterval = null;
+    let isLongPress = false;
+    let countdownTimer = null;
     let countdownSecs = 5;
 
     sosBtn.addEventListener('mousedown', startPress);
     sosBtn.addEventListener('touchstart', startPress);
-
     sosBtn.addEventListener('mouseup', endPress);
-    sosBtn.addEventListener('mouseleave', cancelPress);
+    sosBtn.addEventListener('mouseleave', () => clearTimeout(pressTimer));
     sosBtn.addEventListener('touchend', endPress);
 
-    function startPress(e) {
-      longPressed = false;
+    function startPress() {
+      isLongPress = false;
       pressTimer = setTimeout(() => {
-        longPressed = true;
-        // Trigger Instant Emergency
+        isLongPress = true;
         triggerInstantEmergency();
-      }, 1000); // 1s long-press
+      }, 1000);
     }
 
-    function cancelPress() {
-      if (pressTimer) clearTimeout(pressTimer);
-    }
-
-    function endPress(e) {
-      if (pressTimer) clearTimeout(pressTimer);
-      if (!longPressed) {
-        // Single click: start 5-second countdown
-        startCountdown();
+    function endPress() {
+      clearTimeout(pressTimer);
+      if (!isLongPress) {
+        start5sCountdown();
       }
     }
 
-    function startCountdown() {
-      const overlay = document.getElementById('countdownOverlay');
-      const numElem = document.getElementById('countdownNum');
-      const progress = document.getElementById('countdownProgress');
-
-      overlay.style.display = 'flex';
+    function start5sCountdown() {
+      const screen = document.getElementById('countdownScreen');
+      const val = document.getElementById('countdownValue');
       countdownSecs = 5;
-      numElem.innerText = countdownSecs;
-      progress.style.strokeDashoffset = '0';
+      val.innerText = countdownSecs;
+      screen.style.display = 'flex';
 
-      const totalOffset = 377;
-      let elapsed = 0;
-
-      if (countdownInterval) clearInterval(countdownInterval);
-
-      countdownInterval = setInterval(() => {
-        elapsed++;
+      if (countdownTimer) clearInterval(countdownTimer);
+      countdownTimer = setInterval(() => {
         countdownSecs--;
-        numElem.innerText = countdownSecs;
-        progress.style.strokeDashoffset = (elapsed / 5) * totalOffset;
-
+        val.innerText = countdownSecs;
         if (countdownSecs <= 0) {
-          clearInterval(countdownInterval);
-          overlay.style.display = 'none';
+          clearInterval(countdownTimer);
+          screen.style.display = 'none';
           triggerInstantEmergency();
         }
       }, 1000);
     }
 
-    function cancelCountdown() {
-      if (countdownInterval) clearInterval(countdownInterval);
-      document.getElementById('countdownOverlay').style.display = 'none';
+    function cancelSosCountdown() {
+      if (countdownTimer) clearInterval(countdownTimer);
+      document.getElementById('countdownScreen').style.display = 'none';
     }
 
     function triggerInstantEmergency() {
-      cancelCountdown();
-      document.getElementById('emergencyOverlay').style.display = 'flex';
-      startSirenSound();
+      cancelSosCountdown();
+      document.getElementById('emergencyScreen').style.display = 'flex';
+      playSiren();
     }
 
-    // PIN Verification for resolving emergency
-    let enteredPin = '';
-    const VALID_PINS = ['2580', '1234', '0000'];
-
-    function openPinModal() {
-      document.getElementById('pinModal').style.display = 'flex';
-      clearPin();
+    // PIN Keypad
+    let typedPin = '';
+    function openPinKeypad() {
+      document.getElementById('pinKeypad').style.display = 'flex';
+      resetPinInput();
     }
 
-    function pressPin(digit) {
-      if (enteredPin.length < 4) {
-        enteredPin += digit;
-        updatePinDots();
-        if (enteredPin.length === 4) {
+    function typePin(digit) {
+      if (typedPin.length < 4) {
+        typedPin += digit;
+        updateDots();
+        if (typedPin.length === 4) {
           setTimeout(verifyPin, 150);
         }
       }
     }
 
-    function clearPin() {
-      enteredPin = '';
-      updatePinDots();
+    function resetPinInput() {
+      typedPin = '';
+      updateDots();
     }
 
-    function updatePinDots() {
+    function updateDots() {
       for (let i = 1; i <= 4; i++) {
-        const dot = document.getElementById(`dot${i}`);
-        if (i <= enteredPin.length) {
-          dot.classList.add('filled');
-        } else {
-          dot.classList.remove('filled');
-        }
+        const dot = document.getElementById(`p${i}`);
+        dot.style.background = (i <= typedPin.length) ? 'var(--primary)' : 'transparent';
       }
     }
 
     function verifyPin() {
-      if (VALID_PINS.includes(enteredPin)) {
-        // Resolved
-        document.getElementById('pinModal').style.display = 'none';
-        document.getElementById('emergencyOverlay').style.display = 'none';
-        stopSirenSound();
-        clearPin();
+      if (typedPin === '2580' || typedPin === '1234' || typedPin === '0000') {
+        document.getElementById('pinKeypad').style.display = 'none';
+        document.getElementById('emergencyScreen').style.display = 'none';
+        stopSiren();
+        resetPinInput();
       } else {
         alert("Incorrect PIN! Enter '2580'");
-        clearPin();
+        resetPinInput();
       }
     }
 
-    function quickResolvePin() {
-      enteredPin = '2580';
-      updatePinDots();
+    function autoResolvePin() {
+      typedPin = '2580';
+      updateDots();
       setTimeout(verifyPin, 100);
     }
 
-    // Fake Call Simulation
-    let fakeCallTimeout = null;
-    function triggerFakeCall() {
+    // Fake call
+    function startFakeCallTimer() {
       alert("📞 Fake call incoming in 3 seconds...");
-      if (fakeCallTimeout) clearTimeout(fakeCallTimeout);
-      fakeCallTimeout = setTimeout(() => {
-        document.getElementById('fakeCallOverlay').style.display = 'flex';
+      setTimeout(() => {
+        document.getElementById('fakeCallScreen').style.display = 'flex';
       }, 3000);
     }
 
-    function dismissFakeCall() {
-      document.getElementById('fakeCallOverlay').style.display = 'none';
-    }
-
-    function acceptFakeCall() {
-      alert("Call connected! Pretend you are on a live call with your dad.");
-      dismissFakeCall();
-    }
-
-    // AI Threat Scan Simulation
-    function runSimulatedThreatScan() {
-      const riskBadge = document.getElementById('riskBadge');
-      const riskSummary = document.getElementById('riskSummary');
-
-      riskBadge.innerText = 'ANALYZING WITH GEMINI...';
-      riskBadge.style.color = '#FFB300';
-      riskBadge.style.background = 'rgba(255, 179, 0, 0.2)';
-
-      setTimeout(() => {
-        riskBadge.innerText = 'ELEVATED RISK (68%)';
-        riskBadge.style.color = '#FF5A78';
-        riskBadge.style.background = 'rgba(255, 90, 120, 0.2)';
-        riskSummary.innerText = 'Gemini 1.5 Flash detected anomalous footsteps cadence and ambient noise spike (>82 dB). Dispatched proactive notification.';
-      }, 1200);
-    }
-
-    // Dynamic Waveform Canvas rendering
-    const canvas = document.getElementById('waveformCanvas');
-    const ctx = canvas.getContext('2d');
-    let phase = 0;
-
-    function drawWave() {
-      canvas.width = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
-      const w = canvas.width;
-      const h = canvas.height;
-
-      ctx.clearRect(0, 0, w, h);
-      ctx.beginPath();
-      ctx.strokeStyle = '#E61C40';
-      ctx.lineWidth = 2.5;
-
-      for (let x = 0; x < w; x++) {
-        const y = h / 2 + Math.sin(x * 0.05 + phase) * 12 * Math.sin(phase * 0.5);
-        if (x === 0) ctx.moveTo(x, y);
-        else ctx.lineTo(x, y);
-      }
-      ctx.stroke();
-      phase += 0.08;
-      requestAnimationFrame(drawWave);
-    }
-    requestAnimationFrame(drawWave);
-
-    // Modal Handlers for Architecture & 20 Q&A
-    function openDocModal(type) {
-      const modal = document.getElementById('docModal');
-      const body = document.getElementById('modalBody');
-
-      if (type === 'arch') {
-        body.innerHTML = `
-          <h2 style="font-family: var(--font-heading); font-size: 1.8rem; margin-bottom: 1rem;">SafeHer Clean Architecture</h2>
-          <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">
-            SafeHer adheres to strict MVVM Clean Architecture with unidirectional data flow (UDF) via StateFlow:
-          </p>
-          <div style="background: rgba(0,0,0,0.4); padding: 1rem; border-radius: 10px; font-family: var(--font-mono); font-size: 0.85rem; color: #FF5A78; margin-bottom: 1rem;">
-            [Jetpack Compose UI] ➔ [ViewModel (StateFlow)] ➔ [Domain Services (Speech, Siren, GPS)] ➔ [Data (Room DB, Gemini REST API)]
-          </div>
-          <ul style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.8; padding-left: 1.5rem;">
-            <li><strong>Presentation:</strong> Declarative Compose components with immutable state snapshots.</li>
-            <li><strong>Domain:</strong> Discrete distress keywords detector, PCM audio synthesizer.</li>
-            <li><strong>Data Layer:</strong> Room SQLite DB for emergency contacts; Gemini 1.5 Flash with fallback heuristics.</li>
-          </ul>
-        `;
-      } else if (type === 'qa') {
-        body.innerHTML = `
-          <h2 style="font-family: var(--font-heading); font-size: 1.8rem; margin-bottom: 1rem;">Top 20 Trilogy Innovations Interview Questions</h2>
-          <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">
-            Refer to the full document in your repo for comprehensive answers:
-          </p>
-          <ol style="color: var(--text-secondary); font-size: 0.88rem; line-height: 1.8; padding-left: 1.5rem;">
-            <li>Can you walk me through what SafeHer does and why you built it?</li>
-            <li>What makes SafeHer unique compared to existing SOS apps?</li>
-            <li>How did you design around false alarms vs real emergencies?</li>
-            <li>Why did you pick MVVM and Clean Architecture?</li>
-            <li>Why Jetpack Compose over XML layouts?</li>
-            <li>How do you handle concurrency with Kotlin Coroutines?</li>
-            <li>How does the offline-first heuristic fallback work during network drops?</li>
-            <li>How does the on-device voice distress detector protect privacy?</li>
-            <li>How does the Emergency Siren work without external sound files?</li>
-            <li>What was the hardest bug you solved?</li>
-          </ol>
-        `;
-      }
-      modal.style.display = 'flex';
-    }
-
-    function closeDocModal() {
-      document.getElementById('docModal').style.display = 'none';
+    function closeFakeCall() {
+      document.getElementById('fakeCallScreen').style.display = 'none';
     }
   </script>
 </body>
