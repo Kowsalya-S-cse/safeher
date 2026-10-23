@@ -1,7 +1,5 @@
 # SafeHer 🛡️ - AI-Powered Smart Women Safety System
-
-> 🌐 **[Launch Live Interactive Web App & Simulator](https://kowsalya-s-cse.github.io/safeher/)** — Test the live SOS countdown, audio siren, threat radar, and fake call simulator directly in your browser!  
-> 📺 **[Watch Demo Video](https://drive.google.com/file/d/15LBFj9d9LqmQVHRrfts4xkvL0sBX-19P/view?usp=sharing)** • 📦 **[Download Android APK (v1.0)](https://github.com/Kowsalya-S-cse/safeher/releases)**
+> 📺 **[Watch Live Demo Video](https://drive.google.com/file/d/15LBFj9d9LqmQVHRrfts4xkvL0sBX-19P/view?usp=sharing)** — See SafeHer in action with real-time SOS, AI threat assessment, and GPS tracking.
 
 SafeHer is an autonomous, proactive personal safety Android application built with Jetpack Compose, Kotlin Coroutines, Room Database, and Google Gemini 1.5 Flash AI. It provides automated threat assessment, discrete distress detection, emergency SOS alerts, and live GPS tracking to keep women safe anywhere.
 
