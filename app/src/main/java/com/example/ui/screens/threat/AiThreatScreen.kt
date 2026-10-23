@@ -161,7 +161,7 @@ fun AiThreatScreen(
                         )
                         Spacer(modifier = Modifier.width(4.dp))
                         Text(
-                            text = if (threatAssessment.isEvaluatedByGemini) "Gemini 3.5 Flash" else "Local Fusion Engine",
+                            text = if (threatAssessment.isEvaluatedByGemini) "Gemini 1.5 Flash" else "Local Fusion Engine",
                             color = HighDensityTextSecondary,
                             fontSize = 11.sp,
                             fontWeight = FontWeight.SemiBold

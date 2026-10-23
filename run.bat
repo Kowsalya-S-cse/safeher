@@ -6,6 +6,11 @@ echo ========================================================
 echo   SafeHer: Launching directly from Antigravity IDE
 echo ========================================================
 
+if exist "C:\Program Files\Android\Android Studio\jbr" (
+    set "JAVA_HOME=C:\Program Files\Android\Android Studio\jbr"
+    set "PATH=%JAVA_HOME%\bin;%PATH%"
+)
+
 set "PATH=%LOCALAPPDATA%\Android\Sdk\platform-tools;%PATH%"
 
 adb devices | findstr /R "device$" >nul 2>&1

@@ -3,9 +3,14 @@ package com.example.domain.services
 import android.content.Context
 import android.util.Log
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.isActive
+import kotlinx.coroutines.launch
 
 data class VoiceMonitoringState(
     val isListening: Boolean = false,
@@ -25,6 +30,8 @@ class VoiceDistressDetector(
 
     private val _monitoringState = MutableStateFlow(VoiceMonitoringState())
     val monitoringState: StateFlow<VoiceMonitoringState> = _monitoringState.asStateFlow()
+
+    private var waveformAnimationJob: Job? = null
 
     private val defaultDistressKeywords = listOf(
         "help",
@@ -47,6 +54,10 @@ class VoiceDistressDetector(
         "i need help",
         "under attack",
         "attack",
+        "scream",
+        "screaming",
+        "screams",
+        "shriek",
         "ayuda",
         "socorro"
     )
@@ -58,12 +69,34 @@ class VoiceDistressDetector(
         customKeyword = userCustomKeyword.trim().ifEmpty { "HELP" }
         _monitoringState.value = _monitoringState.value.copy(
             isListening = true,
-            isDistressTriggered = false
+            isDistressTriggered = false,
+            currentDecibels = 38
         )
         Log.d(tag, "Voice distress detection armed for keyword: $customKeyword")
+        startWaveformAnimation()
+    }
+
+    private fun startWaveformAnimation() {
+        waveformAnimationJob?.cancel()
+        waveformAnimationJob = scope.launch(Dispatchers.Default) {
+            while (isActive) {
+                delay(350)
+                if (!_monitoringState.value.isListening) break
+                if (!_monitoringState.value.isDistressTriggered) {
+                    val ambientDb = (35..45).random()
+                    val dynamicAmps = List(16) { 0.12f + ((2..28).random() / 100f) }
+                    _monitoringState.value = _monitoringState.value.copy(
+                        currentDecibels = ambientDb,
+                        waveformAmplitudes = dynamicAmps
+                    )
+                }
+            }
+        }
     }
 
     fun stopListening() {
+        waveformAnimationJob?.cancel()
+        waveformAnimationJob = null
         _monitoringState.value = _monitoringState.value.copy(
             isListening = false,
             isDistressTriggered = false
@@ -99,6 +132,13 @@ class VoiceDistressDetector(
     }
 
     fun triggerSimulatedDistressPhrase(phrase: String = "HELP ME") {
+        val isScream = phrase.equals("SCREAM", ignoreCase = true)
+        val decibels = if (isScream) 88 else 76
+        val spikeAmplitudes = listOf(0.85f, 0.95f, 0.78f, 0.92f, 0.65f, 0.88f, 0.98f, 0.82f, 0.75f, 0.9f, 0.84f, 0.7f, 0.88f, 0.94f, 0.8f, 0.65f)
+        _monitoringState.value = _monitoringState.value.copy(
+            currentDecibels = decibels,
+            waveformAmplitudes = spikeAmplitudes
+        )
         processSpeechText(phrase)
     }
 }

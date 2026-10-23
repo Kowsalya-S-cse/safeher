@@ -28,6 +28,7 @@ import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.LocationOn
 import androidx.compose.material.icons.outlined.Radar
 import androidx.compose.material.icons.outlined.Settings
+import androidx.compose.material.icons.outlined.Shield
 import androidx.compose.material3.Badge
 import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.Icon
@@ -86,7 +87,7 @@ sealed class SafeHerScreen(
     val selectedIcon: ImageVector,
     val unselectedIcon: ImageVector
 ) {
-    object Home : SafeHerScreen("home", "SOS", Icons.Filled.Shield, Icons.Outlined.Home)
+    object Home : SafeHerScreen("home", "SOS", Icons.Filled.Shield, Icons.Outlined.Shield)
     object AiThreat : SafeHerScreen("ai_threat", "AI Radar", Icons.Filled.Radar, Icons.Outlined.Radar)
     object Location : SafeHerScreen("location", "Location", Icons.Filled.LocationOn, Icons.Outlined.LocationOn)
     object Contacts : SafeHerScreen("contacts", "Contacts", Icons.Filled.Contacts, Icons.Outlined.Contacts)

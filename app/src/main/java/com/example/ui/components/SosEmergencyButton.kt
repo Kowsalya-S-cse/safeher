@@ -6,9 +6,11 @@ import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -37,6 +39,7 @@ import com.example.ui.theme.CrimsonPrimary
 import com.example.ui.theme.CrimsonPrimaryDark
 import com.example.ui.theme.CrimsonPrimaryLight
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun SosEmergencyButton(
     modifier: Modifier = Modifier,
@@ -115,10 +118,11 @@ fun SosEmergencyButton(
                 .shadow(28.dp, shape = CircleShape, spotColor = CrimsonPrimary, ambientColor = CrimsonPrimaryDark)
                 .clip(CircleShape)
                 .border(8.dp, Color.White.copy(alpha = 0.25f), CircleShape)
-                .clickable(
+                .combinedClickable(
                     interactionSource = remember { MutableInteractionSource() },
                     indication = null,
-                    onClick = onClick
+                    onClick = onClick,
+                    onLongClick = onLongClick
                 )
                 .testTag("sos_main_button"),
             shape = CircleShape,

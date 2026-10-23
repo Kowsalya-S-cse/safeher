@@ -97,7 +97,7 @@ class GeminiSafetyService {
                 })
             }
 
-            val endpoint = "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=$apiKey"
+            val endpoint = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=$apiKey"
             val request = Request.Builder()
                 .url(endpoint)
                 .post(requestJson.toString().toRequestBody(jsonMediaType))
